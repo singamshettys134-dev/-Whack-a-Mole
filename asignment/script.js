@@ -1,61 +1,56 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f2f2f2;
+// Select all mole holes
+const moles = document.querySelectorAll(".mole");
+const scoreDisplay = document.getElementById("score");
+const message = document.getElementById("message");
+const restartBtn = document.getElementById("restart");
+
+let score = 0;
+let activeMole = null;
+let gameInterval = null;
+
+// Function to randomly highlight a mole
+function activateMole() {
+  // remove previous active mole if any
+  if (activeMole !== null) {
+    moles[activeMole].classList.remove("active");
+  }
+
+  // pick a random mole index
+  const randomIndex = Math.floor(Math.random() * moles.length);
+  moles[randomIndex].classList.add("active");
+  activeMole = randomIndex;
 }
 
-.game-container {
-  background: #e9f4fb;
-  display: inline-block;
-  padding: 30px;
-  border-radius: 10px;
-  margin-top: 50px;
+// Function when mole is clicked
+function hitMole(event) {
+  if (event.target.classList.contains("active")) {
+    score++;
+    scoreDisplay.textContent = score;
+
+    // remove the highlight immediately
+    event.target.classList.remove("active");
+
+    if (score >= 5) {
+      clearInterval(gameInterval);
+      message.textContent = "🎉 You win!";
+    }
+  }
 }
 
-h1 {
-  margin: 0;
+// Attach click listeners to all moles
+moles.forEach(mole => mole.addEventListener("click", hitMole));
+
+// Start game
+function startGame() {
+  score = 0;
+  scoreDisplay.textContent = score;
+  message.textContent = "";
+  if (gameInterval) clearInterval(gameInterval);
+  gameInterval = setInterval(activateMole, 350);
 }
 
-.game-board {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin: 30px auto;
-}
+// Restart game
+restartBtn.addEventListener("click", startGame);
 
-.mole {
-  width: 100px;
-  height: 100px;
-  background: gray;
-  border-radius: 50%;
-  border: 2px solid black;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
 
-.mole.active {
-  background: green;
-  transform: scale(1.1);
-}
-
-#message {
-  font-size: 1.3em;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #333;
-}
-
-#restart {
-  padding: 10px 20px;
-  font-size: 1em;
-  background: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-#restart:hover {
-  background: #0b7dda;
-}
+startGame();
