@@ -1,78 +1,61 @@
-/* Basic Reset and Page Styling */
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  text-align: center;
+  background: #f2f2f2;
+}
+
+.game-container {
+  background: #e9f4fb;
+  display: inline-block;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+h1 {
   margin: 0;
 }
 
-/* Game Title */
-h1 {
-  color: #333;
-  margin-bottom: 10px;
-  text-shadow: 1px 1px 2px white;
-}
-
-/* Score Display */
-#score {
-  font-size: 1.5em;
-  margin-bottom: 30px;
-  color: #222;
-  background: white;
-  padding: 10px 25px;
-  border-radius: 10px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-}
-
-/* Game Board Layout */
 .game-board {
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin-bottom: 30px;
+  margin: 30px auto;
 }
 
-/* Mole Buttons */
 .mole {
   width: 100px;
   height: 100px;
+  background: gray;
   border-radius: 50%;
-  background-color: #795548;
-  border: none;
+  border: 2px solid black;
   cursor: pointer;
-  box-shadow: inset 0 5px 10px rgba(0,0,0,0.3);
-  transition: 0.3s;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.mole:hover {
+.mole.active {
+  background: green;
   transform: scale(1.1);
-  background-color: #6d4c41;
 }
 
-/* Active class (for future JS use) */
-.active {
-  background-color: #4CAF50 !important; /* Green when active */
-  box-shadow: 0 0 15px #4CAF50;
+#message {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
 }
 
-/* Restart Button */
-.restart-btn {
-  padding: 10px 25px;
-  background-color: #ff4081;
+#restart {
+  padding: 10px 20px;
+  font-size: 1em;
+  background: #2196f3;
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1em;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  transition: background 0.2s ease;
 }
 
-.restart-btn:hover {
-  background-color: #f50057;
-  transform: scale(1.05);
+#restart:hover {
+  background: #0b7dda;
 }
