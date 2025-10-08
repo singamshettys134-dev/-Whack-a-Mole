@@ -7,17 +7,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="game-container">
+    <h1>Whack-a-Mole</h1>
+    <p>Score: <span id="score">0</span></p>
+    <p id="message"></p>
 
-  <h1>Whack-a-Mole</h1>
-  <div id="score">Score: 0</div>
+    <div class="game-board">
+      <div class="mole"></div>
+      <div class="mole"></div>
+      <div class="mole"></div>
+    </div>
 
-  <div class="game-board">
-    <button class="mole"></button>
-    <button class="mole"></button>
-    <button class="mole"></button>
+    <button id="restart">Restart</button>
   </div>
 
-  <button class="restart-btn">Restart</button>
-
+  <script src="script.js"></script>
 </body>
 </html>
